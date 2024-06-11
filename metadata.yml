@@ -1,0 +1,7 @@
+#cloud-config
+users:
+  - name: kita
+    groups: sudo
+    shell: /bin/bash
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6x4kcxJyOQRIoT883IVgDPfTpD7iOdz3lutstFq2Fv kita@KitaPC
