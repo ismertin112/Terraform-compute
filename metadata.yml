@@ -2,6 +2,7 @@
 users:
   - name: kita
     groups: sudo
+    sudo: "ALL=(ALL) NOPASSWD:ALL"
     shell: /bin/bash
     ssh-authorized-keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6x4kcxJyOQRIoT883IVgDPfTpD7iOdz3lutstFq2Fv kita@KitaPC
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILG/Avj9nI5f/mMBxddo5UdAkD6ClZH411lczvURz9zJ kita@archlinux
