@@ -72,7 +72,7 @@ resource "yandex_compute_instance" "test-pks" {
     subnet_id = yandex_vpc_subnet.subnet-1.id
     nat       = true
 
-    # security_group_ids = [yandex_vpc_security_group.group-test.id]
+    security_group_ids = [yandex_vpc_security_group.group-test.id]
 
   }
   metadata = {
@@ -88,7 +88,7 @@ resource "yandex_vpc_network" "network-testing" {
   }
 }
 
-/*resource "yandex_vpc_security_group" "group-test" {
+resource "yandex_vpc_security_group" "group-test" {
   name       = "test-group"
   network_id = yandex_vpc_network.network-testing.id
 
@@ -96,19 +96,32 @@ resource "yandex_vpc_network" "network-testing" {
     description    = "ssh"
     port           = 22
     protocol       = "TCP"
-    v4_cidr_blocks = ["0.0.0.0/0"]
+    v4_cidr_blocks = ["46.191.181.120/32"]
   }
   ingress {
     description    = "test"
     port           = 80
     protocol       = "TCP"
-    v4_cidr_blocks = ["198.19.128.0/19", "198.19.32.0/19", "198.19.64.0/19", "84.201.185.129/32", "46.191.181.120/32"]
+    v4_cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description    = "internet"
+    port           = 65535
+    protocol       = "ANY"
+    v4_cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
     description    = "ssh"
     port           = 22
     protocol       = "TCP"
+    v4_cidr_blocks = ["46.191.181.120/32"]
+  }
+  egress {
+    description    = "internet"
+    port           = 65535
+    protocol       = "ANY"
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -116,11 +129,11 @@ resource "yandex_vpc_network" "network-testing" {
     description    = "test"
     port           = 80
     protocol       = "TCP"
-    v4_cidr_blocks = ["198.19.128.0/19", "198.19.32.0/19", "198.19.64.0/19", "84.201.185.129/32", "46.191.181.120/32"]
+    v4_cidr_blocks = ["0.0.0.0/0"]
   }
 
 }
-*/
+
 resource "yandex_vpc_subnet" "subnet-1" {
   name           = "subnet-testing"
   zone           = "ru-central1-a"
